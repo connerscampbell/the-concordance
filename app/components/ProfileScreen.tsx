@@ -1,30 +1,106 @@
-type ProfileProps = {
-  character: {
-    fullName: string;
-    species: string;
+import DiceTester from "./DiceTester";
+
+type Character = {
+  fullName: string;
+  species: string;
+  class?: string;
+  background?: string;
+  alignment?: string;
+  hp?: {
+    current: number;
+    max: number;
   };
+  credits?: number;
+  biography?: string;
+  portrait?: string;
 };
 
-export default function ProfileScreen({
-  character,
-}: ProfileProps) {
+type ProfileProps = {
+  character: Character;
+};
+
+export default function ProfileScreen({ character }: ProfileProps) {
   return (
-    <section className="profile-panel">
-      <h2>PERSONNEL FILE</h2>
+    <section className="profile">
+      <div className="profile-header">
+        <div className="portrait">
+          <span>IMAGE</span>
+        </div>
 
-      <p>NAME:</p>
-      <h1>{character.fullName}</h1>
+        <div className="identity">
+          <div className="label">PERSONNEL FILE</div>
 
-      <p>SPECIES:</p>
-      <h2>{character.species}</h2>
+          <h1>{character.fullName}</h1>
 
-      <hr />
+          <h2>{character.species}</h2>
 
-      <p>STATUS:</p>
-      <h2>ACTIVE</h2>
+          <p className="status">
+            STATUS:
+            <span> ACTIVE</span>
+          </p>
+        </div>
+      </div>
 
-      <p>CLASS:</p>
-      <h2>UNKNOWN</h2>
+      <div className="stats-grid">
+        <Stat
+          label="CLASS"
+          value={character.class ?? "Unknown"}
+        />
+
+        <Stat
+          label="BACKGROUND"
+          value={character.background ?? "Unknown"}
+        />
+
+        <Stat
+          label="ALIGNMENT"
+          value={character.alignment ?? "Unknown"}
+        />
+
+        <Stat
+          label="HEALTH"
+          value={
+            character.hp
+              ? `${character.hp.current} / ${character.hp.max}`
+              : "Unknown"
+          }
+        />
+
+        <Stat
+          label="CREDITS"
+          value={
+            character.credits?.toLocaleString() ?? "0"
+          }
+        />
+      </div>
+
+      <div className="bio">
+        <div className="section-title">
+          BIOGRAPHICAL RECORD
+        </div>
+
+        <p>
+          {character.biography ??
+            "No record has been entered into the Concordance."}
+        </p>
+      </div>
+
+      <DiceTester />
     </section>
+  );
+}
+
+function Stat({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="stat-card">
+      <div className="stat-label">{label}</div>
+      <div className="stat-value">{value}</div>
+    </div>
   );
 }

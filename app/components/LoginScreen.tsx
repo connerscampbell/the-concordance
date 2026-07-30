@@ -2,66 +2,55 @@
 
 import { useState } from "react";
 import { characters } from "../data/characters";
-import Dashboard from "./Dashboard";
+import AppShell from "./AppShell";
 
 export default function LoginScreen() {
+  const [name, setName] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState<any>(null);
+  const [error, setError] = useState("");
 
-  const [username, setUsername] = useState("");
-  const [user, setUser] = useState<any>(null);
-
-
-  function connectUser() {
-
-    const foundUser = characters.find(
+  function handleLogin() {
+    const user = characters.find(
       (character) =>
-        character.userName.toLowerCase()
-        === username.toLowerCase()
+        character.userName.toLowerCase() === name.trim().toLowerCase()
     );
 
-
-    if(foundUser){
-      setUser(foundUser);
+    if (!user) {
+      setError("Access Denied");
+      return;
     }
 
+    setLoggedInUser(user);
+    setError("");
   }
 
-
-  if(user){
-    return (
-      <Dashboard user={user}/>
-    );
+  if (loggedInUser) {
+    return <AppShell user={loggedInUser} />;
   }
-
 
   return (
-    <main className="datapad">
+    <main className="login-screen">
+      <div className="login-panel">
+        <h1>THE CONCORDANCE</h1>
 
-      <div className="panel">
-
-        <h1>
-          THE CONCORDANCE
-        </h1>
-
-        <p>
-          USER IDENTIFICATION REQUIRED
-        </p>
-
+        <p>GALACTIC DATA CRYSTAL INTERFACE</p>
 
         <input
-          placeholder="ENTER FIRST NAME"
-          value={username}
-          onChange={(e)=>
-            setUsername(e.target.value)
-          }
+          type="text"
+          placeholder="Enter First Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleLogin();
+            }
+          }}
         />
 
+        <button onClick={handleLogin}>ACCESS DATABASE</button>
 
-        <button onClick={connectUser}>
-          CONNECT
-        </button>
-
+        {error && <p className="error">{error}</p>}
       </div>
-
     </main>
   );
 }
