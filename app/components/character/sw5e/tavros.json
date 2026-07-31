@@ -1,0 +1,160 @@
+{
+    "name": "Tavros",
+    "id": "6c12e7d6-504f-479f-8a91-18ecb0bc45b7",
+    "userId": "6462b122-509f-44d4-9a28-e7ef2e99f6d6",
+    "builderVersion": "0.7.6",
+    "image": "",
+    "user": "",
+    "experiencePoints": 6500,
+    "species": {
+        "name": "Zabrak",
+        "abilityScoreImprovementSelectedOption": 0,
+        "abilityScoreImprovement": {
+            "Dexterity": 1
+        }
+    },
+    "classes": [
+        {
+            "name": "Berserker",
+            "levels": 5,
+            "hitPoints": [
+                6,
+                6,
+                8,
+                11
+            ],
+            "abilityScoreImprovements": [
+                {
+                    "type": "Feat",
+                    "name": "Commando"
+                }
+            ],
+            "archetype": {
+                "name": "Brawling Approach"
+            }
+        }
+    ],
+    "baseAbilityScores": {
+        "Strength": 15,
+        "Dexterity": 15,
+        "Constitution": 13,
+        "Intelligence": 11,
+        "Wisdom": 10,
+        "Charisma": 9
+    },
+    "background": {
+        "name": "Farmer",
+        "feat": {
+            "name": "Naturalist",
+            "type": "Feat"
+        },
+        "feature": ""
+    },
+    "characteristics": {
+        "alignment": "Lawful Balanced",
+        "Personality Traits": "",
+        "Ideal": "",
+        "Bond": "",
+        "Flaw": "",
+        "Gender": "Male",
+        "Place of Birth": "Dathomir",
+        "Age": "24",
+        "Height": "",
+        "Weight": "",
+        "Hair": "",
+        "Eyes": "",
+        "Skin": "Yellow-Orange",
+        "Appearance": "",
+        "Backstory": ""
+    },
+    "credits": 500,
+    "equipment": [
+        {
+            "name": "Vibroblade",
+            "quantity": 2,
+            "category": "Equipment",
+            "equipped": true
+        },
+        {
+            "name": "Combat suit",
+            "quantity": 1,
+            "category": "Equipment",
+            "equipped": true
+        }
+    ],
+    "currentStats": {
+        "hitPointsLost": 10,
+        "temporaryHitPoints": 0,
+        "techPointsUsed": 0,
+        "forcePointsUsed": 0,
+        "superiorityDiceUsed": 0,
+        "hitDiceUsed": {
+            "d12": 0
+        },
+        "deathSaves": {
+            "successes": 0,
+            "failures": 0
+        },
+        "hasInspiration": false,
+        "featuresTimesUsed": {},
+        "conditions": [],
+        "exhaustion": 0,
+        "highLevelCasting": {
+            "level6": false,
+            "level7": false,
+            "level8": false,
+            "level9": false
+        }
+    },
+    "tweaks": {
+        "abilityScores": {
+            "Charisma": {
+                "skills": {
+                    "Intimidation": {
+                        "proficiency": "Proficient"
+                    }
+                }
+            },
+            "Dexterity": {
+                "score": {
+                    "bonus": 2,
+                    "override": null
+                }
+            },
+            "Intelligence": {
+                "skills": {
+                    "Nature": {
+                        "proficiency": "Proficient"
+                    }
+                }
+            }
+        }
+    },
+    "customProficiencies": [
+        {
+            "name": "Drum",
+            "type": "tool",
+            "proficiencyLevel": "proficient"
+        },
+        {
+            "name": "Chef's kit",
+            "type": "tool",
+            "proficiencyLevel": "proficient"
+        }
+    ],
+    "customLanguages": [],
+    "customFeatures": [],
+    "customFeats": [],
+    "customTechPowers": [],
+    "customForcePowers": [],
+    "customEquipment": [],
+    "settings": {
+        "isEnforcingForcePrerequisites": true,
+        "isFixedHitPoints": false,
+        "abilityScoreMethod": "Manual"
+    },
+    "notes": "",
+    "createdAt": 1775937470766,
+    "changedAt": 1781919166395,
+    "localId": "temp-emn1pjpa5"
+}

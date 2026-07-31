@@ -1,0 +1,149 @@
+{
+    "name": "Sakii",
+    "id": "709aab0e-af5c-4ebf-96f5-42d550c67496",
+    "userId": "78486fe8-3bfd-457a-89cc-4bbd92486272",
+    "builderVersion": "0.7.6",
+    "image": "",
+    "user": "",
+    "experiencePoints": 6500,
+    "species": {
+        "name": "Kiffar",
+        "abilityScoreImprovementSelectedOption": 0,
+        "abilityScoreImprovement": {
+            "Dexterity": 2,
+            "Wisdom": 1
+        }
+    },
+    "classes": [
+        {
+            "name": "Scout",
+            "levels": 5,
+            "hitPoints": [
+                6,
+                6,
+                6,
+                6
+            ],
+            "abilityScoreImprovements": [
+                {
+                    "type": "Ability Score Improvement",
+                    "abilitiesIncreased": [
+                        {
+                            "name": "Dexterity",
+                            "value": 1
+                        },
+                        {
+                            "name": "Intelligence",
+                            "value": 1
+                        }
+                    ]
+                }
+            ],
+            "archetype": {
+                "name": "Stalker Technique"
+            },
+            "techPowers": [
+                "Electroshock",
+                "Ion Blast",
+                "Jet of Flame",
+                "Minor Defibrillation",
+                "Detonator",
+                "Echo Blast",
+                "Mending"
+            ]
+        }
+    ],
+    "baseAbilityScores": {
+        "Strength": 14,
+        "Dexterity": 17,
+        "Constitution": 15,
+        "Intelligence": 17,
+        "Wisdom": 15,
+        "Charisma": 10
+    },
+    "background": {
+        "name": "Survivor",
+        "feat": {
+            "name": "Survivalist",
+            "type": "Feat"
+        },
+        "feature": ""
+    },
+    "characteristics": {
+        "alignment": "Lawful Balanced",
+        "Personality Traits": "Reserved, Quiet, Follower",
+        "Ideal": "",
+        "Bond": "",
+        "Flaw": "",
+        "Gender": "Female",
+        "Place of Birth": "Kiffu",
+        "Age": "23",
+        "Height": "5'7",
+        "Weight": "150",
+        "Hair": "Dark Brown",
+        "Eyes": "Dark Brown",
+        "Skin": "White w/Facial Tattoos",
+        "Appearance": "",
+        "Backstory": "Left Kiffu shortly after turning 18 with the intention of becoming a bounty hunter. Completed her first few jobs but lost a lot of credibility with the Guild when she refused to bring in a bounty she considered innocent. She's the newest member of the crew, joining just over a year ago when she was saved from a Pyke prison transport. Impressed by her stealth and skills as a sniper, you worked with her on a few contracts before eventually welcoming her as part of the crew. Openly agnostic when it comes to politics but partial to the Republic/Jedi just because Quinlan Vos is kind of a legend from her up bringing. "
+    },
+    "credits": 500,
+    "equipment": [
+        {
+            "name": "Fiber armor",
+            "quantity": 1,
+            "category": "Equipment",
+            "equipped": true
+        },
+        {
+            "name": "Sniper rifle",
+            "quantity": 1,
+            "category": "Equipment",
+            "equipped": true
+        },
+        {
+            "name": "Lightbaton",
+            "quantity": 2,
+            "category": "Equipment",
+            "equipped": true
+        }
+    ],
+    "currentStats": {
+        "hitPointsLost": 0,
+        "temporaryHitPoints": 0,
+        "techPointsUsed": 1,
+        "forcePointsUsed": 0,
+        "superiorityDiceUsed": 0,
+        "hitDiceUsed": {},
+        "deathSaves": {
+            "successes": 0,
+            "failures": 0
+        },
+        "hasInspiration": false,
+        "featuresTimesUsed": {},
+        "conditions": [],
+        "exhaustion": 0,
+        "highLevelCasting": {
+            "level6": false,
+            "level7": false,
+            "level8": false,
+            "level9": false
+        }
+    },
+    "tweaks": {},
+    "customProficiencies": [],
+    "customLanguages": [],
+    "customFeatures": [],
+    "customFeats": [],
+    "customTechPowers": [],
+    "customForcePowers": [],
+    "customEquipment": [],
+    "settings": {
+        "isEnforcingForcePrerequisites": true,
+        "isFixedHitPoints": false,
+        "abilityScoreMethod": "Manual"
+    },
+    "notes": "",
+    "createdAt": 1775940349555,
+    "changedAt": 1781918834104,
+    "localId": "temp-blf4iw2wh"
+}

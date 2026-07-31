@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import ProfileScreen from "./ProfileScreen";
+import AbilitiesScreen from "./AbilitiesScreen";
 
 type Screen =
   | "profile"
@@ -19,6 +20,16 @@ type AppShellProps = {
     character: {
       fullName: string;
       species: string;
+      class?: string;
+      background?: string;
+      alignment?: string;
+      hp?: {
+        current: number;
+        max: number;
+      };
+      credits?: number;
+      biography?: string;
+      portrait?: string;
     };
   };
 };
@@ -32,7 +43,7 @@ export default function AppShell({ user }: AppShellProps) {
         return <ProfileScreen character={user.character} />;
 
       case "abilities":
-        return <Placeholder title="Abilities" />;
+        return <AbilitiesScreen />;
 
       case "combat":
         return <Placeholder title="Combat" />;
@@ -57,7 +68,6 @@ export default function AppShell({ user }: AppShellProps) {
   return (
     <main className="datapad">
       <div className="panel">
-
         <header className="header">
           <div>
             <h1>THE CONCORDANCE</h1>
@@ -67,24 +77,20 @@ export default function AppShell({ user }: AppShellProps) {
           <div className="status">
             <p>ACCESS: GRANTED</p>
             <p>STATUS: ONLINE</p>
+            <p>USER: {user.userName.toUpperCase()}</p>
           </div>
         </header>
 
         <div className="interface">
-
           <Sidebar
             active={screen}
             onChange={setScreen}
           />
 
           <section className="screen">
-
             {renderScreen()}
-
           </section>
-
         </div>
-
       </div>
     </main>
   );
@@ -95,9 +101,7 @@ function Placeholder({ title }: { title: string }) {
     <div className="placeholder">
       <h2>{title}</h2>
 
-      <p>
-        This module is coming online...
-      </p>
+      <p>This module is coming online...</p>
     </div>
   );
 }
