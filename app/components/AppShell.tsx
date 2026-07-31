@@ -4,6 +4,7 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import ProfileScreen from "./ProfileScreen";
 import AbilitiesScreen from "./AbilitiesScreen";
+import CombatScreen from "./CombatScreen";
 
 type Screen =
   | "profile"
@@ -46,7 +47,7 @@ export default function AppShell({ user }: AppShellProps) {
         return <AbilitiesScreen />;
 
       case "combat":
-        return <Placeholder title="Combat" />;
+        return <CombatScreen />;
 
       case "inventory":
         return <Placeholder title="Inventory" />;
@@ -100,7 +101,6 @@ function Placeholder({ title }: { title: string }) {
   return (
     <div className="placeholder">
       <h2>{title}</h2>
-
       <p>This module is coming online...</p>
     </div>
   );

@@ -1,4 +1,4 @@
-import DiceTester from "./DiceTester";
+
 
 type Character = {
   fullName: string;
@@ -85,7 +85,7 @@ export default function ProfileScreen({ character }: ProfileProps) {
         </p>
       </div>
 
-      <DiceTester />
+
     </section>
   );
 }

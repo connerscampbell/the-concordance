@@ -329,3 +329,133 @@ button {
     color:#7fe0ff;
 
 }
+/* ===========================
+   COMBAT
+=========================== */
+
+.combat-screen{
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+}
+
+.combat-card{
+    background:#101417;
+    border:1px solid #435862;
+    padding:1rem 1.25rem;
+}
+
+.combat-card h2{
+    margin:0 0 1rem;
+    color:#8fdfff;
+    letter-spacing:2px;
+}
+
+.hp-display{
+    font-size:2rem;
+    color:#8fdfff;
+    font-weight:bold;
+}
+
+.weapon-card{
+    border:1px solid #3f5964;
+    background:#0c1014;
+    padding:1rem;
+    margin-bottom:1rem;
+}
+
+.weapon-card h3{
+    margin:0 0 .75rem;
+}
+
+.weapon-buttons{
+    display:flex;
+    gap:1rem;
+    margin-top:1rem;
+}
+
+.weapon-buttons button{
+    flex:1;
+    background:#17232a;
+    border:1px solid #4c6c78;
+    color:white;
+    padding:.75rem;
+    cursor:pointer;
+}
+
+.weapon-buttons button:hover{
+    background:#21404d;
+}
+
+/* ===========================
+   DICE
+=========================== */
+
+.manual-dice{
+    margin-top:2rem;
+    border:1px solid #435862;
+    background:#101417;
+    padding:1.5rem;
+}
+
+.manual-dice h2{
+    margin-top:0;
+}
+
+.dice-controls{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1rem;
+    margin:1rem 0 2rem;
+}
+
+.dice-controls label{
+    display:flex;
+    flex-direction:column;
+    gap:.4rem;
+    font-size:.85rem;
+}
+
+.dice-controls select,
+.dice-controls input{
+    background:#111;
+    color:white;
+    border:1px solid #506873;
+    padding:.65rem;
+    font-family:inherit;
+}
+
+.manual-dice button{
+    background:#21404d;
+    border:1px solid #70d6ff;
+    color:white;
+    padding:.8rem 2rem;
+    cursor:pointer;
+}
+
+.manual-dice button:hover{
+    background:#326276;
+}
+
+.roll-history{
+    margin-top:2rem;
+    display:grid;
+    gap:1rem;
+}
+
+.history-card{
+    background:#0b0f13;
+    border:1px solid #3f5964;
+    padding:1rem;
+}
+
+.history-card h2{
+    margin:.5rem 0 0;
+    color:#8fdfff;
+}
+
+.combat-result{
+    border:1px solid #70d6ff;
+    background:#132029;
+    padding:1rem;
+}
