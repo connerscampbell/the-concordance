@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { characters } from "../data/characters";
+import { users } from "../data/users";
 import AppShell from "./AppShell";
 
 export default function LoginScreen() {
@@ -10,9 +10,10 @@ export default function LoginScreen() {
   const [error, setError] = useState("");
 
   function handleLogin() {
-    const user = characters.find(
-      (character) =>
-        character.userName.toLowerCase() === name.trim().toLowerCase()
+    const user = users.find(
+      (user) =>
+        user.userName.toLowerCase() ===
+        name.trim().toLowerCase()
     );
 
     if (!user) {
@@ -47,9 +48,15 @@ export default function LoginScreen() {
           }}
         />
 
-        <button onClick={handleLogin}>ACCESS DATABASE</button>
+        <button onClick={handleLogin}>
+          ACCESS DATABASE
+        </button>
 
-        {error && <p className="error">{error}</p>}
+        {error && (
+          <p className="error">
+            {error}
+          </p>
+        )}
       </div>
     </main>
   );

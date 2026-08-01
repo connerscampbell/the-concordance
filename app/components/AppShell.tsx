@@ -5,6 +5,8 @@ import Sidebar from "./Sidebar";
 import ProfileScreen from "./ProfileScreen";
 import AbilitiesScreen from "./AbilitiesScreen";
 import CombatScreen from "./CombatScreen";
+import InventoryScreen from "./InventoryScreen";
+import { Character } from "../data";
 
 type Screen =
   | "profile"
@@ -18,48 +20,60 @@ type Screen =
 type AppShellProps = {
   user: {
     userName: string;
-    character: {
-      fullName: string;
-      species: string;
-      class?: string;
-      background?: string;
-      alignment?: string;
-      hp?: {
-        current: number;
-        max: number;
-      };
-      credits?: number;
-      biography?: string;
-      portrait?: string;
-    };
+    character: Character;
   };
 };
 
-export default function AppShell({ user }: AppShellProps) {
-  const [screen, setScreen] = useState<Screen>("profile");
+export default function AppShell({
+  user,
+}: AppShellProps) {
+  const [screen, setScreen] =
+    useState<Screen>("profile");
 
   function renderScreen() {
     switch (screen) {
       case "profile":
-        return <ProfileScreen character={user.character} />;
+        return (
+          <ProfileScreen
+            character={user.character}
+          />
+        );
 
       case "abilities":
-        return <AbilitiesScreen />;
+        return (
+          <AbilitiesScreen
+            character={user.character}
+          />
+        );
 
       case "combat":
-        return <CombatScreen />;
+        return (
+          <CombatScreen
+            character={user.character}
+          />
+        );
 
       case "inventory":
-        return <Placeholder title="Inventory" />;
+        return (
+          <InventoryScreen
+            character={user.character}
+          />
+        );
 
       case "contacts":
-        return <Placeholder title="Contacts" />;
+        return (
+          <Placeholder title="Contacts" />
+        );
 
       case "archive":
-        return <Placeholder title="The Concordance" />;
+        return (
+          <Placeholder title="The Concordance" />
+        );
 
       case "campaign":
-        return <Placeholder title="Campaign Journal" />;
+        return (
+          <Placeholder title="Campaign Journal" />
+        );
 
       default:
         return null;
@@ -72,13 +86,19 @@ export default function AppShell({ user }: AppShellProps) {
         <header className="header">
           <div>
             <h1>THE CONCORDANCE</h1>
-            <span>GALACTIC DATA CRYSTAL INTERFACE</span>
+            <span>
+              GALACTIC DATA CRYSTAL
+              INTERFACE
+            </span>
           </div>
 
           <div className="status">
             <p>ACCESS: GRANTED</p>
             <p>STATUS: ONLINE</p>
-            <p>USER: {user.userName.toUpperCase()}</p>
+            <p>
+              USER:{" "}
+              {user.userName.toUpperCase()}
+            </p>
           </div>
         </header>
 
@@ -97,11 +117,17 @@ export default function AppShell({ user }: AppShellProps) {
   );
 }
 
-function Placeholder({ title }: { title: string }) {
+function Placeholder({
+  title,
+}: {
+  title: string;
+}) {
   return (
     <div className="placeholder">
       <h2>{title}</h2>
-      <p>This module is coming online...</p>
+      <p>
+        This module is coming online...
+      </p>
     </div>
   );
 }
