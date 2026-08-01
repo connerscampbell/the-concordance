@@ -1,8 +1,8 @@
 import { Character } from "./types";
-
 import { sakii } from "./characters/sakii";
 import { tavros } from "./characters/tavros";
 import { mateo } from "./characters/mateo";
+import { ronan } from "./characters/ronan";
 
 export type User = {
   userName: string;
@@ -25,11 +25,8 @@ export const users: User[] = [
     character: mateo,
   },
 
-  // Tomorrow:
-  // import { ronan } from "./characters/ronan";
-  //
-  // {
-  //   userName: "Cooper",
-  //   character: ronan,
-  // },
+  {
+    userName: "Cooper",
+    character: ronan,
+  },
 ];
