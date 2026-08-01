@@ -1,7 +1,7 @@
 import { sakii } from "./characters/sakii";
-import { Character } from "./types";
+import type { Character } from "./types";
 
-export { Character };
+export type { Character };
 
 export const characters = {
   sakii,

@@ -1,88 +1,254 @@
 "use client";
 
 import { useState } from "react";
-import { d20 } from "../lib/dice";
+import { Character } from "../data";
+import {
+  abilityCheck,
+  savingThrow,
+  RollResult,
+} from "../lib/dice";
 
-type Roll = {
-  expression: string;
-  total: number;
-  rolls: number[];
+type Ability = {
+  name: string;
+  score: number;
+  modifier: number;
+  save: number;
+};
+
+type Skill = {
+  name: string;
   modifier: number;
 };
 
-const abilities = [
-  { name: "Strength", modifier: 2 },
-  { name: "Dexterity", modifier: 4 },
-  { name: "Constitution", modifier: 1 },
-  { name: "Intelligence", modifier: 3 },
-  { name: "Wisdom", modifier: 6 },
-  { name: "Charisma", modifier: 1 },
-];
+type Props = {
+  character: Character;
+};
 
-const skills = [
-  { name: "Acrobatics", modifier: 4 },
-  { name: "Athletics", modifier: 2 },
-  { name: "Computer Use", modifier: 5 },
-  { name: "Deception", modifier: 1 },
-  { name: "Initiative", modifier: 4 },
-  { name: "Insight", modifier: 6 },
-  { name: "Investigation", modifier: 5 },
-  { name: "Lore", modifier: 7 },
-  { name: "Medicine", modifier: 3 },
-  { name: "Perception", modifier: 6 },
-  { name: "Persuasion", modifier: 2 },
-  { name: "Piloting", modifier: 5 },
-  { name: "Stealth", modifier: 8 },
-  { name: "Survival", modifier: 4 },
-];
+export default function AbilitiesScreen({
+  character,
+}: Props) {
+  const abilities: Ability[] = [
+    {
+      name: "Strength",
+      ...character.abilities.strength,
+    },
+    {
+      name: "Dexterity",
+      ...character.abilities.dexterity,
+    },
+    {
+      name: "Constitution",
+      ...character.abilities.constitution,
+    },
+    {
+      name: "Intelligence",
+      ...character.abilities.intelligence,
+    },
+    {
+      name: "Wisdom",
+      ...character.abilities.wisdom,
+    },
+    {
+      name: "Charisma",
+      ...character.abilities.charisma,
+    },
+  ];
 
-export default function AbilitiesScreen() {
-  const [lastRoll, setLastRoll] = useState<Roll | null>(null);
-  const [lastName, setLastName] = useState("");
+  const skills: Skill[] = [
+    {
+      name: "Acrobatics",
+      modifier: character.skills.acrobatics,
+    },
+    {
+      name: "Animal Handling",
+      modifier: character.skills.animalHandling,
+    },
+    {
+      name: "Athletics",
+      modifier: character.skills.athletics,
+    },
+    {
+      name: "Deception",
+      modifier: character.skills.deception,
+    },
+    {
+      name: "Insight",
+      modifier: character.skills.insight,
+    },
+    {
+      name: "Intimidation",
+      modifier: character.skills.intimidation,
+    },
+    {
+      name: "Investigation",
+      modifier: character.skills.investigation,
+    },
+    {
+      name: "Lore",
+      modifier: character.skills.lore,
+    },
+    {
+      name: "Medicine",
+      modifier: character.skills.medicine,
+    },
+    {
+      name: "Nature",
+      modifier: character.skills.nature,
+    },
+    {
+      name: "Performance",
+      modifier: character.skills.performance,
+    },
+    {
+      name: "Perception",
+      modifier: character.skills.perception,
+    },
+    {
+      name: "Persuasion",
+      modifier: character.skills.persuasion,
+    },
+    {
+      name: "Piloting",
+      modifier: character.skills.piloting,
+    },
+    {
+      name: "Sleight of Hand",
+      modifier: character.skills.sleightOfHand,
+    },
+    {
+      name: "Stealth",
+      modifier: character.skills.stealth,
+    },
+    {
+      name: "Survival",
+      modifier: character.skills.survival,
+    },
+    {
+      name: "Technology",
+      modifier: character.skills.technology,
+    },
+  ];
 
-  function performRoll(name: string, modifier: number) {
-    setLastName(name);
-    setLastRoll(d20(modifier));
+  const [result, setResult] =
+    useState<RollResult | null>(null);
+
+  const [title, setTitle] = useState("");
+
+  function doAbilityRoll(
+    name: string,
+    modifier: number
+  ) {
+    setTitle(name);
+    setResult(abilityCheck(modifier));
+  }
+
+  function doSave(
+    name: string,
+    modifier: number
+  ) {
+    setTitle(`${name} Save`);
+    setResult(savingThrow(modifier));
+  }
+
+  function doSkill(
+    name: string,
+    modifier: number
+  ) {
+    setTitle(name);
+    setResult(abilityCheck(modifier));
   }
 
   return (
     <section className="abilities">
-
       <h1>ABILITIES</h1>
 
+      {result && (
+        <div className="combat-result">
+          <h2>{title}</h2>
+
+          <p>Rolls: {result.rolls.join(", ")}</p>
+
+          <p>
+            Modifier{" "}
+            {result.modifier >= 0 ? "+" : ""}
+            {result.modifier}
+          </p>
+
+          <h1>Total: {result.total}</h1>
+        </div>
+      )}
+
       <div className="ability-grid">
-
         {abilities.map((ability) => (
-          <button
+          <div
             key={ability.name}
-            className="roll-button"
-            onClick={() =>
-              performRoll(ability.name, ability.modifier)
-            }
+            className="stat-card"
           >
-            <span>{ability.name}</span>
+            <h3>{ability.name}</h3>
 
-            <strong>
+            <p>Score: {ability.score}</p>
+
+            <p>
+              Modifier{" "}
               {ability.modifier >= 0 ? "+" : ""}
               {ability.modifier}
-            </strong>
-          </button>
-        ))}
+            </p>
 
+            <p>
+              Save{" "}
+              {ability.save >= 0 ? "+" : ""}
+              {ability.save}
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                gap: ".5rem",
+                marginTop: "1rem",
+              }}
+            >
+              <button
+                className="roll-button"
+                onClick={() =>
+                  doAbilityRoll(
+                    ability.name,
+                    ability.modifier
+                  )
+                }
+              >
+                Check
+              </button>
+
+              <button
+                className="roll-button"
+                onClick={() =>
+                  doSave(
+                    ability.name,
+                    ability.save
+                  )
+                }
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <h1 style={{ marginTop: "3rem" }}>
+      <h1 style={{ marginTop: "2rem" }}>
         SKILLS
       </h1>
 
       <div className="skill-grid">
-
         {skills.map((skill) => (
           <button
             key={skill.name}
             className="roll-button"
             onClick={() =>
-              performRoll(skill.name, skill.modifier)
+              doSkill(
+                skill.name,
+                skill.modifier
+              )
             }
           >
             <span>{skill.name}</span>
@@ -93,25 +259,7 @@ export default function AbilitiesScreen() {
             </strong>
           </button>
         ))}
-
       </div>
-
-      {lastRoll && (
-        <div className="roll-result">
-
-          <h2>{lastName}</h2>
-
-          <div className="dice-total">
-            {lastRoll.rolls[0]}
-            {" + "}
-            {lastRoll.modifier}
-            {" = "}
-            {lastRoll.total}
-          </div>
-
-        </div>
-      )}
-
     </section>
   );
 }
