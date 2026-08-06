@@ -52,7 +52,14 @@ export const tavros: Character = {
       },
     ],
 
-    techPowers: [],
+    powers: {
+      type: "Tech",
+      points: {
+        current: 0,
+        max: 0,
+      },
+      known: [],
+    },
   },
 
   abilities: {
@@ -117,6 +124,42 @@ export const tavros: Character = {
     persuasion: -1,
   },
 
+  proficiencies: {
+    armor: [
+      "Light Armor",
+      "Medium Armor",
+    ],
+    weapons: [
+      "All Vibroweapons",
+      "Simple Blasters",
+    ],
+    tools: [
+      "One Instrument",
+      "One Artisan's Implements or Bioanalysis Kit",
+      "Drum",
+      "Chef's Kit",
+    ],
+    languages: ["Galactic Basic"],
+  },
+
+  features: {
+    class: [
+      { name: "Rage" },
+      { name: "Unarmored Defense" },
+      { name: "Berserker Instincts" },
+      { name: "Reckless Attack" },
+      { name: "Berserker Approach" },
+      { name: "Danger Sense" },
+      { name: "Double Swing" },
+      { name: "Dual Wielder" },
+      { name: "Fists of Fury" },
+    ],
+    species: [],
+    background: {
+      name: "Rustic Hospitality",
+    },
+  },
+
   inventory: [
     {
       name: "Combat Suit",
@@ -128,6 +171,10 @@ export const tavros: Character = {
       quantity: 2,
     },
   ],
+
+  physical: {},
+
+  personality: {},
 
   biography:
     "A Zabrak berserker from Dathomir whose strength is matched only by his unwavering resolve. Raised as a farmer before taking up the life of a warrior, Tavros relies on instinct, discipline, and overwhelming force to protect those he fights beside.",

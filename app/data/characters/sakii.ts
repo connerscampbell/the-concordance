@@ -60,15 +60,22 @@ export const sakii: Character = {
       },
     ],
 
-    techPowers: [
-      "Electroshock",
-      "Ion Blast",
-      "Jet of Flame",
-      "Minor Defibrillation",
-      "Detonator",
-      "Echo Blast",
-      "Mending",
-    ],
+    powers: {
+      type: "Tech",
+      points: {
+        current: 9,
+        max: 9,
+      },
+      known: [
+        { name: "Electroshock" },
+        { name: "Ion Blast" },
+        { name: "Jet of Flame" },
+        { name: "Minor Defibrillation" },
+        { name: "Detonator" },
+        { name: "Echo Blast" },
+        { name: "Mending" },
+      ],
+    },
   },
 
   abilities: {
@@ -133,22 +140,57 @@ export const sakii: Character = {
     persuasion: 0,
   },
 
+  proficiencies: {
+    armor: [
+      "Light Armor",
+      "Medium Armor",
+    ],
+    weapons: [
+      "All Blasters",
+      "All Vibroweapons",
+    ],
+    tools: [
+      "Artisan's Implements / Biotech Implements / Brewer's Kit",
+    ],
+    languages: ["Galactic Basic"],
+  },
+
+  features: {
+    class: [
+      { name: "Pathfinder" },
+      { name: "Fighting Style" },
+      { name: "Techcasting" },
+      { name: "Accomplished Ambusher" },
+      { name: "Mark of the Stalker" },
+      { name: "Scout Routine" },
+      { name: "Scout Technique" },
+      { name: "Ability Score Improvement" },
+      { name: "Extra Attack" },
+    ],
+    species: [],
+    background: {
+      name: "Heart of Darkness",
+    },
+  },
+
   inventory: [
     {
       name: "Fiber Armor",
       quantity: 1,
     },
-
     {
       name: "Sniper Rifle",
       quantity: 1,
     },
-
     {
       name: "Lightbaton",
       quantity: 2,
     },
   ],
+
+  physical: {},
+
+  personality: {},
 
   biography:
     "Left Kiffu shortly after turning 18 with the intention of becoming a bounty hunter. She eventually joined the crew after being rescued from a Pyke prison transport, earning her place through stealth and marksmanship.",

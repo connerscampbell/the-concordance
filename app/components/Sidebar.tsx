@@ -3,6 +3,7 @@ type Screen =
   | "abilities"
   | "combat"
   | "inventory"
+  | "features"
   | "contacts"
   | "archive"
   | "campaign";
@@ -20,6 +21,7 @@ const buttons: {
   { label: "ABILITIES", value: "abilities" },
   { label: "COMBAT", value: "combat" },
   { label: "INVENTORY", value: "inventory" },
+  { label: "FEATURES", value: "features" },
   { label: "CONTACTS", value: "contacts" },
   { label: "ARCHIVE", value: "archive" },
   { label: "CAMPAIGN", value: "campaign" },
@@ -31,11 +33,9 @@ export default function Sidebar({
 }: Props) {
   return (
     <aside className="sidebar">
-
       <h2>SYSTEM MENU</h2>
 
       <nav>
-
         {buttons.map((button) => (
           <button
             key={button.value}
@@ -51,9 +51,7 @@ export default function Sidebar({
             {button.label}
           </button>
         ))}
-
       </nav>
-
     </aside>
   );
 }

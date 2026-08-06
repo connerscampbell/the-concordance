@@ -282,15 +282,40 @@ export default function CombatScreen({
       </div>
 
       <div className="combat-card">
-        <h2>TECH POWERS</h2>
+        <h2>
+          {character.combat.powers.type.toUpperCase()}{" "}
+          POWERS
+        </h2>
 
         <ul>
-          {character.combat.techPowers.map(
+          {character.combat.powers.known.map(
             (power) => (
-              <li key={power}>{power}</li>
+              <li key={power.name}>
+                {power.name}
+              </li>
             )
           )}
         </ul>
+
+        {character.combat.powers.points && (
+          <p
+            style={{
+              marginTop: "1rem",
+            }}
+          >
+            {character.combat.powers.type}{" "}
+            Points:{" "}
+            {
+              character.combat.powers.points
+                .current
+            }
+            /
+            {
+              character.combat.powers.points
+                .max
+            }
+          </p>
+        )}
       </div>
 
       <div className="combat-card">

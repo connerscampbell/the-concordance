@@ -60,12 +60,15 @@ export const ronan: Character = {
       },
     ],
 
-    techPowers: [
-      "Battle Precognition",
-      "Force Push/Pull",
-      "Mind Trick",
-      "Saber Reflect",
-    ],
+    powers: {
+      type: "Force",
+      known: [
+        { name: "Battle Precognition" },
+        { name: "Force Push/Pull" },
+        { name: "Mind Trick" },
+        { name: "Saber Reflect" },
+      ],
+    },
   },
 
   abilities: {
@@ -130,6 +133,45 @@ export const ronan: Character = {
     persuasion: 5,
   },
 
+  proficiencies: {
+    armor: [
+      "Light Armor",
+      "Medium Armor",
+    ],
+    weapons: [
+      "Simple Blasters",
+      "Simple Vibroweapons",
+      "Martial Blasters (qualified)",
+      "Martial Vibroweapons (Finesse)",
+      "Lightweapons",
+    ],
+    tools: [
+      "Two Artisan's Implements, Gaming Sets, or Musical Instruments",
+    ],
+    languages: [
+      "Galactic Basic",
+      "Binary",
+    ],
+  },
+
+  features: {
+    class: [
+      { name: "Sneak Attack" },
+      { name: "Cunning Action" },
+      { name: "Operative Exploits" },
+      { name: "Bad Feeling" },
+      { name: "Operative Practice" },
+      { name: "Know a Bit" },
+      { name: "Maverick Superiority" },
+      { name: "Ability Score Improvement" },
+      { name: "Uncanny Dodge" },
+    ],
+    species: [],
+    background: {
+      name: "Guided by the Force",
+    },
+  },
+
   inventory: [
     {
       name: "Fiber Armor",
@@ -151,6 +193,10 @@ export const ronan: Character = {
       quantity: 2,
     },
   ],
+
+  physical: {},
+
+  personality: {},
 
   biography:
     "Raised with an awareness of the Force but outside the formal Jedi Order, Ronan developed his own methods of blending instinct, agility, and precision. He now travels with the crew, relying on both his training and his connection to the Force to stay one step ahead of his enemies.",

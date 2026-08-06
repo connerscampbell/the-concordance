@@ -60,7 +60,14 @@ export const mateo: Character = {
       },
     ],
 
-    techPowers: [],
+    powers: {
+      type: "Tech",
+      points: {
+        current: 0,
+        max: 0,
+      },
+      known: [],
+    },
   },
 
   abilities: {
@@ -125,6 +132,35 @@ export const mateo: Character = {
     persuasion: -1,
   },
 
+  proficiencies: {
+    armor: ["All Armor"],
+    weapons: [
+      "All Blasters",
+      "All Vibroweapons",
+    ],
+    tools: [
+      "One Set of Artisan's Implements",
+    ],
+    languages: ["Galactic Basic"],
+  },
+
+  features: {
+    class: [
+      { name: "Fighting Style" },
+      { name: "Second Wind" },
+      { name: "Action Surge" },
+      { name: "Combat Superiority" },
+      { name: "Fighter Specialty" },
+      { name: "Fighter Strategies" },
+      { name: "Ability Score Improvement" },
+      { name: "Extra Attack" },
+    ],
+    species: [],
+    background: {
+      name: "Child of Mandalore",
+    },
+  },
+
   inventory: [
     {
       name: "Beskar Weave Armor",
@@ -141,6 +177,10 @@ export const mateo: Character = {
       quantity: 1,
     },
   ],
+
+  physical: {},
+
+  personality: {},
 
   biography:
     "A Chiss adopted into Clan Wren after the Mandalorian Civil War. Overshadowed by the legendary Thrawn, Mateo forged his own reputation as a disciplined mercenary, relying on relentless combat training, tactical instinct, and unwavering determination rather than legacy.",

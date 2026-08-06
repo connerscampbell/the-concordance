@@ -6,6 +6,7 @@ import ProfileScreen from "./ProfileScreen";
 import AbilitiesScreen from "./AbilitiesScreen";
 import CombatScreen from "./CombatScreen";
 import InventoryScreen from "./InventoryScreen";
+import FeaturesScreen from "./FeaturesScreen";
 import { Character } from "../data";
 
 type Screen =
@@ -13,6 +14,7 @@ type Screen =
   | "abilities"
   | "combat"
   | "inventory"
+  | "features"
   | "contacts"
   | "archive"
   | "campaign";
@@ -56,6 +58,13 @@ export default function AppShell({
       case "inventory":
         return (
           <InventoryScreen
+            character={user.character}
+          />
+        );
+
+      case "features":
+        return (
+          <FeaturesScreen
             character={user.character}
           />
         );

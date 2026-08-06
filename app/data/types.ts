@@ -12,6 +12,40 @@ export type Ability = {
   save: number;
 };
 
+export type InventoryItem = {
+  name: string;
+  quantity: number;
+};
+
+export type CharacterFeature = {
+  name: string;
+  description?: string;
+};
+
+export type Power = {
+  name: string;
+  description?: string;
+};
+
+export type PhysicalDetails = {
+  age?: number;
+  birthplace?: string;
+  height?: string;
+  weight?: string;
+  gender?: string;
+  eyes?: string;
+  hair?: string;
+  skin?: string;
+  appearance?: string;
+};
+
+export type Personality = {
+  traits?: string;
+  ideals?: string;
+  bonds?: string;
+  flaws?: string;
+};
+
 export type Character = {
   profile: {
     name: string;
@@ -48,7 +82,14 @@ export type Character = {
 
     weapons: Weapon[];
 
-    techPowers: string[];
+    powers: {
+      type: "Force" | "Tech";
+      points?: {
+        current: number;
+        max: number;
+      };
+      known: Power[];
+    };
   };
 
   abilities: {
@@ -84,10 +125,24 @@ export type Character = {
     persuasion: number;
   };
 
-  inventory: {
-    name: string;
-    quantity: number;
-  }[];
+  proficiencies?: {
+    armor: string[];
+    weapons: string[];
+    tools: string[];
+    languages: string[];
+  };
+
+  features?: {
+    class: CharacterFeature[];
+    species: CharacterFeature[];
+    background?: CharacterFeature;
+  };
+
+  inventory: InventoryItem[];
+
+  physical?: PhysicalDetails;
+
+  personality?: Personality;
 
   biography: string;
 };
