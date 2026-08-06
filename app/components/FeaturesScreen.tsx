@@ -13,56 +13,89 @@ export default function FeaturesScreen({
     <section className="abilities">
       <h1>FEATURES & PROFICIENCIES</h1>
 
+      <SectionTitle title="CLASS FEATURES" />
+
       <div className="stats-grid">
-        <FeatureCard
-          title="CLASS FEATURES"
-          items={character.features.class.map(
-            (feature) => feature.name
-          )}
-        />
+        {character.features.class.map((feature) => (
+          <FeatureCard
+            key={feature.name}
+            title={feature.name}
+            description={feature.description}
+          />
+        ))}
+      </div>
 
-        <FeatureCard
-          title="SPECIES TRAITS"
-          items={character.features.species.map(
-            (feature) => feature.name
-          )}
-        />
+      <SectionTitle title="SPECIES TRAITS" />
 
-        <FeatureCard
-          title="BACKGROUND FEATURE"
-          items={
-            character.features.background
-              ? [
-                  character.features.background
-                    .name,
-                ]
-              : []
-          }
-        />
+      <div className="stats-grid">
+        {character.features.species.length === 0 ? (
+          <FeatureCard
+            title="None"
+            description=""
+          />
+        ) : (
+          character.features.species.map(
+            (feature) => (
+              <FeatureCard
+                key={feature.name}
+                title={feature.name}
+                description={
+                  feature.description
+                }
+              />
+            )
+          )
+        )}
+      </div>
 
-        <FeatureCard
-          title="WEAPON PROFICIENCIES"
+      <SectionTitle title="BACKGROUND FEATURE" />
+
+      <div className="stats-grid">
+        {character.features.background ? (
+          <FeatureCard
+            title={
+              character.features.background
+                .name
+            }
+            description={
+              character.features.background
+                .description
+            }
+          />
+        ) : (
+          <FeatureCard
+            title="None"
+            description=""
+          />
+        )}
+      </div>
+
+      <SectionTitle title="PROFICIENCIES" />
+
+      <div className="stats-grid">
+        <ListCard
+          title="Weapons"
           items={
             character.proficiencies.weapons
           }
         />
 
-        <FeatureCard
-          title="ARMOR PROFICIENCIES"
+        <ListCard
+          title="Armor"
           items={
             character.proficiencies.armor
           }
         />
 
-        <FeatureCard
-          title="TOOL PROFICIENCIES"
+        <ListCard
+          title="Tools"
           items={
             character.proficiencies.tools
           }
         />
 
-        <FeatureCard
-          title="LANGUAGES"
+        <ListCard
+          title="Languages"
           items={
             character.proficiencies.languages
           }
@@ -72,7 +105,46 @@ export default function FeaturesScreen({
   );
 }
 
+function SectionTitle({
+  title,
+}: {
+  title: string;
+}) {
+  return (
+    <h2
+      style={{
+        marginTop: "2rem",
+        marginBottom: "1rem",
+      }}
+    >
+      {title}
+    </h2>
+  );
+}
+
 function FeatureCard({
+  title,
+  description,
+}: {
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div className="stat-card">
+      <h3>{title}</h3>
+
+      {description ? (
+        <p>{description}</p>
+      ) : (
+        <p>
+          No description available.
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ListCard({
   title,
   items,
 }: {
@@ -83,21 +155,17 @@ function FeatureCard({
     <div className="stat-card">
       <h3>{title}</h3>
 
-      {items.length === 0 ? (
-        <p>None</p>
-      ) : (
-        <ul
-          style={{
-            marginTop: ".75rem",
-            paddingLeft: "1rem",
-            lineHeight: 1.7,
-          }}
-        >
-          {items.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      )}
+      <ul
+        style={{
+          marginTop: ".75rem",
+          paddingLeft: "1rem",
+          lineHeight: 1.7,
+        }}
+      >
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }

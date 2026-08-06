@@ -5,16 +5,18 @@ import Sidebar from "./Sidebar";
 import ProfileScreen from "./ProfileScreen";
 import AbilitiesScreen from "./AbilitiesScreen";
 import CombatScreen from "./CombatScreen";
-import InventoryScreen from "./InventoryScreen";
+import PowersScreen from "./PowersScreen";
 import FeaturesScreen from "./FeaturesScreen";
+import InventoryScreen from "./InventoryScreen";
 import { Character } from "../data";
 
 type Screen =
   | "profile"
   | "abilities"
   | "combat"
-  | "inventory"
+  | "powers"
   | "features"
+  | "inventory"
   | "contacts"
   | "archive"
   | "campaign";
@@ -55,9 +57,9 @@ export default function AppShell({
           />
         );
 
-      case "inventory":
+      case "powers":
         return (
-          <InventoryScreen
+          <PowersScreen
             character={user.character}
           />
         );
@@ -65,6 +67,13 @@ export default function AppShell({
       case "features":
         return (
           <FeaturesScreen
+            character={user.character}
+          />
+        );
+
+      case "inventory":
+        return (
+          <InventoryScreen
             character={user.character}
           />
         );

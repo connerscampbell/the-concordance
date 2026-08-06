@@ -2,8 +2,9 @@ type Screen =
   | "profile"
   | "abilities"
   | "combat"
-  | "inventory"
+  | "powers"
   | "features"
+  | "inventory"
   | "contacts"
   | "archive"
   | "campaign";
@@ -20,8 +21,9 @@ const buttons: {
   { label: "PROFILE", value: "profile" },
   { label: "ABILITIES", value: "abilities" },
   { label: "COMBAT", value: "combat" },
-  { label: "INVENTORY", value: "inventory" },
+  { label: "POWERS", value: "powers" },
   { label: "FEATURES", value: "features" },
+  { label: "INVENTORY", value: "inventory" },
   { label: "CONTACTS", value: "contacts" },
   { label: "ARCHIVE", value: "archive" },
   { label: "CAMPAIGN", value: "campaign" },
