@@ -101,10 +101,123 @@ export default function ProfileScreen({
 
       <div className="bio">
         <div className="section-title">
+          PHYSICAL DESCRIPTION
+        </div>
+
+        <div className="stats-grid">
+          <Stat
+            label="AGE"
+            value={
+              character.physical?.age?.toString() ??
+              "Unknown"
+            }
+          />
+
+          <Stat
+            label="HEIGHT"
+            value={
+              character.physical?.height ??
+              "Unknown"
+            }
+          />
+
+          <Stat
+            label="WEIGHT"
+            value={
+              character.physical?.weight ??
+              "Unknown"
+            }
+          />
+
+          <Stat
+            label="GENDER"
+            value={
+              character.physical?.gender ??
+              "Unknown"
+            }
+          />
+
+          <Stat
+            label="EYES"
+            value={
+              character.physical?.eyes ??
+              "Unknown"
+            }
+          />
+
+          <Stat
+            label="HAIR"
+            value={
+              character.physical?.hair ??
+              "Unknown"
+            }
+          />
+
+          <Stat
+            label="SKIN"
+            value={
+              character.physical?.skin ??
+              "Unknown"
+            }
+          />
+
+          <Stat
+            label="BIRTHPLACE"
+            value={
+              character.physical
+                ?.birthplace ??
+              "Unknown"
+            }
+          />
+        </div>
+      </div>
+
+      <div className="bio">
+        <div className="section-title">
           BIOGRAPHICAL RECORD
         </div>
 
         <p>{character.biography}</p>
+      </div>
+
+      <div className="bio">
+        <div className="section-title">
+          PSYCHOLOGICAL PROFILE
+        </div>
+
+        <div className="stats-grid">
+          <Stat
+            label="TRAITS"
+            value={
+              character.personality
+                ?.traits ?? "—"
+            }
+          />
+
+          <Stat
+            label="IDEALS"
+            value={
+              character.personality
+                ?.ideals ?? "—"
+            }
+          />
+
+          <Stat
+            label="BONDS"
+            value={
+              character.personality
+                ?.bonds ?? "—"
+            }
+          />
+
+          <Stat
+            label="FLAWS"
+            value={
+              character.personality
+                ?.flaws ?? "—"
+            }
+          />
+        </div>
       </div>
     </section>
   );

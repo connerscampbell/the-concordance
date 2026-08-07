@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Character } from "../data";
 import ManualDiceRoller from "./ManualDiceRoller";
 import {
@@ -13,23 +13,19 @@ import {
 
 type CombatScreenProps = {
   character: Character;
+  setCharacter: Dispatch<
+    SetStateAction<Character>
+  >;
 };
 
 export default function CombatScreen({
   character,
+  setCharacter,
 }: CombatScreenProps) {
   const [result, setResult] =
     useState<RollResult | null>(null);
 
   const [title, setTitle] = useState("");
-
-  const [currentHP, setCurrentHP] = useState(
-    character.combat.hp.current
-  );
-
-  const [tempHP, setTempHP] = useState(
-    character.combat.hp.temporary
-  );
 
   function showResult(
     name: string,
@@ -40,20 +36,54 @@ export default function CombatScreen({
   }
 
   function changeHP(amount: number) {
-    setCurrentHP((hp) =>
-      Math.max(
-        0,
-        Math.min(
-          character.combat.hp.max,
-          hp + amount
-        )
-      )
-    );
+    setCharacter((prev) => ({
+      ...prev,
+      combat: {
+        ...prev.combat,
+        hp: {
+          ...prev.combat.hp,
+          current: Math.max(
+            0,
+            Math.min(
+              prev.combat.hp.max,
+              prev.combat.hp.current +
+                amount
+            )
+          ),
+        },
+      },
+    }));
+  }
+
+  function changeTempHP(amount: number) {
+    setCharacter((prev) => ({
+      ...prev,
+      combat: {
+        ...prev.combat,
+        hp: {
+          ...prev.combat.hp,
+          temporary: Math.max(
+            0,
+            prev.combat.hp.temporary +
+              amount
+          ),
+        },
+      },
+    }));
   }
 
   function fullHeal() {
-    setCurrentHP(character.combat.hp.max);
-    setTempHP(0);
+    setCharacter((prev) => ({
+      ...prev,
+      combat: {
+        ...prev.combat,
+        hp: {
+          ...prev.combat.hp,
+          current: prev.combat.hp.max,
+          temporary: 0,
+        },
+      },
+    }));
   }
 
   return (
@@ -64,13 +94,24 @@ export default function CombatScreen({
         <h2>COMBAT STATUS</h2>
 
         <div className="hp-display">
-          {currentHP} / {character.combat.hp.max}
+          {character.combat.hp.current} /{" "}
+          {character.combat.hp.max}
         </div>
 
-        <p>Temporary HP: {tempHP}</p>
+        <p>
+          Temporary HP:{" "}
+          {
+            character.combat.hp
+              .temporary
+          }
+        </p>
 
         <p>
-          Armor Class: {character.combat.armorClass}
+          Armor Class:{" "}
+          {
+            character.combat
+              .armorClass
+          }
         </p>
 
         <div
@@ -82,7 +123,11 @@ export default function CombatScreen({
           }}
         >
           <span>
-            Initiative: +{character.combat.initiative}
+            Initiative: +
+            {
+              character.combat
+                .initiative
+            }
           </span>
 
           <button
@@ -91,7 +136,8 @@ export default function CombatScreen({
               showResult(
                 "Initiative",
                 initiative(
-                  character.combat.initiative
+                  character.combat
+                    .initiative
                 )
               )
             }
@@ -100,12 +146,25 @@ export default function CombatScreen({
           </button>
         </div>
 
-        {character.combat.hp.hitDice && (
+        {character.combat.hp
+          .hitDice && (
           <p>
             Hit Dice:{" "}
-            {character.combat.hp.hitDice.current}/
-            {character.combat.hp.hitDice.max} (
-            {character.combat.hp.hitDice.die})
+            {
+              character.combat.hp
+                .hitDice.current
+            }
+            /
+            {
+              character.combat.hp
+                .hitDice.max
+            }{" "}
+            (
+            {
+              character.combat.hp
+                .hitDice.die
+            }
+            )
           </p>
         )}
 
@@ -117,47 +176,21 @@ export default function CombatScreen({
             marginTop: "1rem",
           }}
         >
-          <button
-            className="roll-button"
-            onClick={() => changeHP(-10)}
-          >
-            -10
-          </button>
-
-          <button
-            className="roll-button"
-            onClick={() => changeHP(-5)}
-          >
-            -5
-          </button>
-
-          <button
-            className="roll-button"
-            onClick={() => changeHP(-1)}
-          >
-            -1
-          </button>
-
-          <button
-            className="roll-button"
-            onClick={() => changeHP(1)}
-          >
-            +1
-          </button>
-
-          <button
-            className="roll-button"
-            onClick={() => changeHP(5)}
-          >
-            +5
-          </button>
-
-          <button
-            className="roll-button"
-            onClick={() => changeHP(10)}
-          >
-            +10
-          </button>
+          {[-10, -5, -1, 1, 5, 10].map(
+            (amount) => (
+              <button
+                key={amount}
+                className="roll-button"
+                onClick={() =>
+                  changeHP(amount)
+                }
+              >
+                {amount > 0
+                  ? `+${amount}`
+                  : amount}
+              </button>
+            )
+          )}
 
           <button
             className="roll-button"
@@ -177,9 +210,7 @@ export default function CombatScreen({
           <button
             className="roll-button"
             onClick={() =>
-              setTempHP((hp) =>
-                Math.max(0, hp - 1)
-              )
+              changeTempHP(-1)
             }
           >
             Temp -1
@@ -188,7 +219,7 @@ export default function CombatScreen({
           <button
             className="roll-button"
             onClick={() =>
-              setTempHP((hp) => hp + 1)
+              changeTempHP(1)
             }
           >
             Temp +1
@@ -213,21 +244,25 @@ export default function CombatScreen({
             {result.modifier}
           </p>
 
-          <h1>Total: {result.total}</h1>
+          <h1>
+            Total: {result.total}
+          </h1>
         </div>
       )}
 
       <div className="combat-card">
         <h2>CONDITIONS</h2>
 
-        {character.combat.conditions.length ===
-        0 ? (
+        {character.combat.conditions
+          .length === 0 ? (
           <p>None</p>
         ) : (
           <ul>
             {character.combat.conditions.map(
               (condition) => (
-                <li key={condition}>
+                <li
+                  key={condition}
+                >
                   {condition}
                 </li>
               )
@@ -247,7 +282,9 @@ export default function CombatScreen({
               attackBonus={
                 weapon.attackBonus
               }
-              damageDice={weapon.damage}
+              damageDice={
+                weapon.damage
+              }
               notes={weapon.notes}
               onAttack={() =>
                 showResult(
@@ -271,7 +308,9 @@ export default function CombatScreen({
                     Number(match[1]),
                     Number(match[2]),
                     match[3]
-                      ? Number(match[3])
+                      ? Number(
+                          match[3]
+                        )
                       : 0
                   )
                 );
@@ -282,49 +321,15 @@ export default function CombatScreen({
       </div>
 
       <div className="combat-card">
-        <h2>
-          {character.combat.powers.type.toUpperCase()}{" "}
-          POWERS
-        </h2>
-
-        <ul>
-          {character.combat.powers.known.map(
-            (power) => (
-              <li key={power.name}>
-                {power.name}
-              </li>
-            )
-          )}
-        </ul>
-
-        {character.combat.powers.points && (
-          <p
-            style={{
-              marginTop: "1rem",
-            }}
-          >
-            {character.combat.powers.type}{" "}
-            Points:{" "}
-            {
-              character.combat.powers.points
-                .current
-            }
-            /
-            {
-              character.combat.powers.points
-                .max
-            }
-          </p>
-        )}
-      </div>
-
-      <div className="combat-card">
         <h2>QUICK ROLL</h2>
 
         <button
           className="roll-button"
           onClick={() =>
-            showResult("Manual d20", d20())
+            showResult(
+              "Manual d20",
+              d20()
+            )
           }
         >
           Roll d20
@@ -358,7 +363,8 @@ function Weapon({
       <h3>{name}</h3>
 
       <p>
-        Attack Bonus: +{attackBonus}
+        Attack Bonus: +
+        {attackBonus}
       </p>
 
       <p>Damage: {damageDice}</p>

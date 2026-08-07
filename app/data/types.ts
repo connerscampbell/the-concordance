@@ -24,6 +24,12 @@ export type CharacterFeature = {
 
 export type Power = {
   name: string;
+  level?: string;
+  school?: string;
+  castingTime?: string;
+  range?: string;
+  duration?: string;
+  concentration?: boolean;
   description?: string;
 };
 
@@ -84,10 +90,15 @@ export type Character = {
 
     powers: {
       type: "Force" | "Tech";
+
       points?: {
         current: number;
         max: number;
       };
+
+      attackModifier?: number;
+      saveDC?: number;
+
       known: Power[];
     };
   };

@@ -1,4 +1,5 @@
 import { Character, Weapon, Ability } from "../types";
+import { techPowers } from "../powers/tech";
 
 export const sakii: Character = {
   profile: {
@@ -62,18 +63,23 @@ export const sakii: Character = {
 
     powers: {
       type: "Tech",
+
       points: {
         current: 9,
         max: 9,
       },
+
+      attackModifier: 7,
+      saveDC: 15,
+
       known: [
-        { name: "Electroshock" },
-        { name: "Ion Blast" },
-        { name: "Jet of Flame" },
-        { name: "Minor Defibrillation" },
-        { name: "Detonator" },
-        { name: "Echo Blast" },
-        { name: "Mending" },
+        techPowers.electroshock,
+        techPowers.ionBlast,
+        techPowers.jetOfFlame,
+        techPowers.minorDefibrillation,
+        techPowers.detonator,
+        techPowers.echoBlast,
+        techPowers.mending,
       ],
     },
   },
@@ -146,13 +152,19 @@ export const sakii: Character = {
       "Medium Armor",
     ],
     weapons: [
-      "All Blasters",
-      "All Vibroweapons",
+      "Simple Blasters",
+      "Martial Blasters",
+      "Simple Vibroweapons",
+      "Martial Vibroweapons",
     ],
     tools: [
-      "Artisan's Implements / Biotech Implements / Brewer's Kit",
+      "Artisan's Implements",
+      "Biotech Implements",
+      "Brewer's Kit",
     ],
-    languages: ["Galactic Basic"],
+    languages: [
+      "Galactic Basic",
+    ],
   },
 
   features: {
@@ -167,7 +179,9 @@ export const sakii: Character = {
       { name: "Ability Score Improvement" },
       { name: "Extra Attack" },
     ],
+
     species: [],
+
     background: {
       name: "Heart of Darkness",
     },
@@ -178,10 +192,12 @@ export const sakii: Character = {
       name: "Fiber Armor",
       quantity: 1,
     },
+
     {
       name: "Sniper Rifle",
       quantity: 1,
     },
+
     {
       name: "Lightbaton",
       quantity: 2,
