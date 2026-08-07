@@ -1,6 +1,7 @@
 export type Weapon = {
   name: string;
   attackBonus: number;
+  attackModifier?: "STR" | "DEX" | "INT" | "WIS" | "CHA";
   damage: string;
   damageType: string;
   notes: string;
@@ -62,6 +63,10 @@ export type Character = {
     level: number;
     background: string;
     alignment: string;
+
+    experience?: number;
+    nextLevelExperience?: number;
+
     credits: number;
     proficiencyBonus: number;
     speed: number;
